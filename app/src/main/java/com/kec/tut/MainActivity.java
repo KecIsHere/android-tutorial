@@ -4,6 +4,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 
 public class MainActivity extends ActionBarActivity {
 
+    private final String TAG = "MainActivity";
     Button myButton;
     TextView textView;
 
@@ -24,24 +26,42 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
         textView = (TextView)findViewById(R.id.textView);
-
-        myButton = (Button)findViewById(R.id.ourButton);
-        myButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String text = textView.getText().toString();
-                if(text.contains("Android"))
-                {
-                    textView.setText("Hello World");
-                }
-                else
-                {
-                    textView.setText("Hello Android");
-                }
-            }
-        });
+        Log.i(TAG, "onCreate");
     }
 
+    @Override
+    public void onStart()
+    {
+        super.onStart();
+        Log.i(TAG, "onStart");
+    }
+
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+        Log.i(TAG, "onResume");
+    }
+
+    @Override
+    public void onPause()
+    {
+        super.onPause();
+        Log.i(TAG, "onPause");
+    }
+
+    @Override
+    public void onStop()
+    {
+        super.onStop();
+        Log.i(TAG, "onStop");
+    }
+
+    public void onDestroy()
+    {
+        super.onDestroy();
+        Log.i(TAG, "onDestroy");
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -79,4 +99,16 @@ public class MainActivity extends ActionBarActivity {
         }
     }
 
+    public void buttonClicked(View v)
+    {
+        String text = textView.getText().toString();
+        if(text.contains("Android"))
+        {
+            textView.setText("Hello World");
+        }
+        else
+        {
+            textView.setText("Hello Android");
+        }
+    }
 }
