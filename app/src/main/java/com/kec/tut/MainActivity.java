@@ -1,5 +1,6 @@
 package com.kec.tut;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -101,14 +102,9 @@ public class MainActivity extends ActionBarActivity {
 
     public void buttonClicked(View v)
     {
-        String text = textView.getText().toString();
-        if(text.contains("Android"))
-        {
-            textView.setText("Hello World");
-        }
-        else
-        {
-            textView.setText("Hello Android");
-        }
+        Log.i(TAG, "Starting new activity");
+        Intent intent = new Intent(this, NewActivity.class);
+        intent.putExtra("screenText", "Hello World");
+        startActivity(intent);
     }
 }

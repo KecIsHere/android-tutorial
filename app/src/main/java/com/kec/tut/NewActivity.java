@@ -1,7 +1,9 @@
 package com.kec.tut;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -11,10 +13,27 @@ import android.widget.TextView;
  */
 public class NewActivity extends Activity {
 
+    TextView nameOut;
+    TextView commentOut;
+    TextView otherOut;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_activity);
+
+        Intent intent = getIntent();
+        String text = intent.getStringExtra("screenText");
+        Log.i("NewActivity", text);
+
+        nameOut = (TextView)findViewById(R.id.name);
+        commentOut = (TextView)findViewById(R.id.comment);
+        otherOut = (TextView)findViewById(R.id.other);
+
+        if(text!=null)
+        {
+            nameOut.setText(text);
+        }
     }
 
     public void addComment(View v)
@@ -29,12 +48,10 @@ public class NewActivity extends Activity {
         comment = commentLn.getText().toString();
         other = otherLn.getText().toString();
 
-        TextView nameOut = (TextView)findViewById(R.id.name);
-        TextView commentOut = (TextView)findViewById(R.id.comment);
-        TextView otherOut = (TextView)findViewById(R.id.other);
-
         nameOut.setText(name);
-        commentOut.setText(name);
-        otherOut.setText(name);
+        commentOut.setText(comment);
+        otherOut.setText(other);
+
+
     }
 }
